@@ -2,11 +2,12 @@
   "name": "socket-polling",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "node_modules/webpack/bin/webpack.js",
+    "start": "node server.js"
   },
-  "author": "",
+  "author": "Jack Mocherman",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.17.0",
