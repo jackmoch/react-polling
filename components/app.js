@@ -5,19 +5,25 @@ const Header = require('./parts/Header')
 
 const App = React.createClass({
 
+	getInitialState() {
+		return {
+			status: 'disconnected'
+		}
+	},
+
 	componentWillMount() {
 	  this.socket = io()
 	  this.socket.on('connect', this.connect)
 	},
 
 	connect() {
-		console.log(`Connected on ${this.socket.id}`)
+		this.setState({status: 'connected'})
 	},
 
 	render () {
 		return(
 			<div>
-				<Header title='New Header' />
+				<Header title="New Header" status={this.state.status}/>
 			</div>
 		)
 	}
