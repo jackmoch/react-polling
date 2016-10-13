@@ -14,6 +14,11 @@ const App = React.createClass({
 	componentWillMount() {
 	  this.socket = io()
 	  this.socket.on('connect', this.connect)
+	  this.socket.on('disconnect', this.disconnect)
+	},
+
+	disconnect() {
+		this.setState({status: 'disconnected'})
 	},
 
 	connect() {
