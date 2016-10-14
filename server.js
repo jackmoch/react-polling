@@ -3,6 +3,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 const connections = []
+const title = 'Untitled Presentation'
 
 app.set('port', port)
 app.use(express.static('./public'))
@@ -14,6 +15,11 @@ const server = app.listen(port, () => {
 const io = require('socket.io').listen(server)
 
 io.on('connection', (socket) => {
+
+	socket.emit('welcome', {
+		title: title
+	})
+
 	connections.push(socket)
 	console.log(`Listening on ${socket.id}, ${connections.length} connections remaining`)
 
