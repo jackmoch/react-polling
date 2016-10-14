@@ -7,7 +7,8 @@ const App = React.createClass({
 
 	getInitialState() {
 		return {
-			status: 'disconnected'
+			status: 'disconnected',
+			title: ''
 		}
 	},
 
@@ -15,6 +16,7 @@ const App = React.createClass({
 	  this.socket = io()
 	  this.socket.on('connect', this.connect)
 	  this.socket.on('disconnect', this.disconnect)
+	  this.socket.on('welcome', this.welcome)
 	},
 
 	disconnect() {
@@ -25,10 +27,14 @@ const App = React.createClass({
 		this.setState({status: 'connected'})
 	},
 
+	welcome(serverState) {
+		this.setState({title: serverState.title})
+	},
+
 	render () {
 		return(
 			<div>
-				<Header title="New Header" status={this.state.status}/>
+				<Header title={this.state.title} status={this.state.status}/>
 			</div>
 		)
 	}
